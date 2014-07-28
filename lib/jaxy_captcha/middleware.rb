@@ -11,13 +11,15 @@ module JaxyCaptcha
 
     def initialize(app, options={})
       @app = app
-      @path = JaxyCaptcha.captcha_path
+      @path = JaxyCaptcha.mount_at
+      @host = JaxyCaptcha.host
       self
     end
 
     def call(env) # :nodoc:
       if env["REQUEST_METHOD"] == "GET" && captcha_path?(env['PATH_INFO'])
         request = Rack::Request.new(env)
+
 
         if captcha_image_path?(request.path_info)
           make_image(env)
@@ -33,17 +35,16 @@ module JaxyCaptcha
 
     protected
       def captcha_image_path?(request_path)
-        request_path.start_with?("/#{@path}_image")
+        request_path.start_with?("#{@path}_image")
       end
 
       def captcha_path?(request_path)
-        request_path.start_with?("/#{@path}")
+        request_path.start_with?(@path)
       end
 
       def captcha_image_url(env, key)
         scheme = env['rack.url_scheme']
-        host = env['HTTP_HOST']
-        "#{scheme}://#{host}/#{@path}_image?c=#{key}"
+        "#{scheme}://#{@host}#{@path}_image?c=#{key}"
       end
 
       def make_image(env, headers = {}, status = 404)

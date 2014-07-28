@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.email = "hs.samadi@gmail.com"
   s.homepage = "http://github.com/hsamadi/jaxy-captcha"
 
-  s.files = Dir["{lib}/**/*"] + ["Rakefile", "README.md"]
+  s.files = Dir["{lib}/**/*"] + ["README.md"]
   s.extra_rdoc_files = ["README.md"]
   s.require_paths = ["lib"]
 

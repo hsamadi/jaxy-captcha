@@ -45,9 +45,13 @@ module JaxyCaptcha
   mattr_accessor :tmp_path
   @@tmp_path = nil
 
-  # captcha mount path
-  mattr_accessor :captcha_path
-  @@captcha_path = 'jaxy_captcha'
+  # captcha mount point
+  mattr_accessor :mount_at
+  @@mount_at = '/jaxy_captcha'
+
+  # host address
+  mattr_accessor :host
+  @@mount_at = 'localhost:3000'
 
   def self.add_image_style(name, params = [])
     JaxyCaptcha::ImageHelpers.image_styles.update(name.to_s => params)
