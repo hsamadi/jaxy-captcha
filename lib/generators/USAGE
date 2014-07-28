@@ -1,0 +1,4 @@
+JaxyCaptcha
+=============
+# Generate migration and copy view partial
+  rails generate jaxy_captcha
