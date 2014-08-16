@@ -11,7 +11,9 @@ module JaxyCaptcha
       end
 
       def verify(key, value)
-        where(key: key, value: value, passed: false).update_all(passed: true) > 0
+        where(key: key, passed: false)
+          .where('LOWER(value) = ?', value.downcase)
+          .update_all(passed: true) > 0
       end
     end
   end
