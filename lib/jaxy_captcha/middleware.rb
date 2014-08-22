@@ -43,8 +43,8 @@ module JaxyCaptcha
       end
 
       def captcha_image_url(env, key)
-        scheme = env['rack.url_scheme']
-        "#{scheme}://#{@host}#{@path}_image?c=#{key}"
+        basepath = File.join('/', "#{@path}_image")
+        "#{basepath}?c=#{key}"
       end
 
       def make_image(env, headers = {}, status = 404)
