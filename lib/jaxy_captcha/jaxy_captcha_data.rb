@@ -3,8 +3,6 @@ module JaxyCaptcha
 
     self.table_name = "jaxy_captcha_data"
 
-    attr_protected
-
     class << self
       def get_instance(key)
         where(key: key, passed: false).first || new(key: key)
